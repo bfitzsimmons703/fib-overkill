@@ -1,0 +1,56 @@
+version: '3'
+services:
+  worker-queue:
+    container_name: worker-queue
+    image: redis:latest
+
+  worker:
+    container_name: worker
+    build:
+      context: ../worker
+      dockerfile: ./docker/Dockerfile.dev
+    restart: unless-stopped
+    environment:
+      - REDIS_HOST=worker-queue
+      - REDIS_PORT=6379
+    depends_on:
+      - worker-queue
+
+  api:
+    container_name: api
+    build:
+      context: ../api
+      dockerfile: ./docker/Dockerfile.dev
+    restart: unless-stopped
+    volumes:
+      - ../api:/api
+    environment:
+      - REDIS_HOST=worker-queue
+      - REDIS_PORT=6379
+    depends_on:
+      - worker
+
+  ui:
+    container_name: ui
+    build:
+      context: ../ui
+      dockerfile: ./docker/Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - ../ui:/app
+    depends_on:
+      - api
+
+  nginx:
+    container_name: nginx
+    image: nginx
+    restart: unless-stopped
+    build:
+      context: ../nginx
+      dockerfile: ./docker/Dockerfile.dev
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - ui
+      - api
