@@ -1,5 +1,6 @@
 # Fib Overkill
 
+
 ## The most over-engineered fibonacci calculator on the web
 
 Really just an excuse to play around with new tech, including Next.js, FastApi, and Rust.
