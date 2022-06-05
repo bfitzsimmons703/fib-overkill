@@ -14,5 +14,6 @@ Fib Overkill uses docker to manage various components:
 -   API: FastApi in Python
 -   Nginx: Web server
 -   Worker: Rust
+-   Queue: Redis
 
 Run `make` to build and run the docker images
