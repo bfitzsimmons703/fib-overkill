@@ -12,7 +12,7 @@ Fib Overkill uses docker to manage various components:
 
 -   UI: Next.js in Typescript
 -   API: FastApi in Python
--   Nginx: Web Server
+-   NGINX: Web Server
 -   Worker: Rust
 -   Queue: Redis
 
