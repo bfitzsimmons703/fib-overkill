@@ -1,6 +1,5 @@
 # Fib Overkill
 
-
 ## The most over-engineered fibonacci calculator on the web
 
 Really just an excuse to play around with new tech, including Next.js, FastApi, and Rust.
@@ -13,7 +12,7 @@ Fib Overkill uses docker to manage various components:
 
 -   UI: Next.js in Typescript
 -   API: FastApi in Python
--   NGINX: Web Server
+-   Nginx: Web Server
 -   Worker: Rust
 -   Queue: Redis
 
